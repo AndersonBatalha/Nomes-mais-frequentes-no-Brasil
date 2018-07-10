@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Nomes mais frequentes no Brasil</string>
+    <string name="genero">Escolha o gênero:</string>
+    <string name="buscar">Buscar</string>
+    <string-array name="generos">
+        <item>Masculino</item>
+        <item>Feminino</item>
+        <item>Masculino / Feminino</item>
+    </string-array>
+</resources>

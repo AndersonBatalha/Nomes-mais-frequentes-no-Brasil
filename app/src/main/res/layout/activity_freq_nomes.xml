@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context=".freqNomesActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/genero"
+        android:textSize="30dp"
+        android:layout_margin="20pt"
+        />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10pt"
+        android:entries="@array/generos"
+        android:id="@+id/spn_generos"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/buscar"
+        android:layout_marginTop="20pt"
+        android:layout_marginRight="10pt"
+        android:layout_marginLeft="10pt"
+        android:id="@+id/btn_buscar_nomes"
+        />
+
+</LinearLayout>
