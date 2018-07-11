@@ -15,8 +15,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
-import models.rankingNomes;
-
 public class ibge_service extends AsyncTask<Void, Void, JSONArray> {
 
     private final String genero;

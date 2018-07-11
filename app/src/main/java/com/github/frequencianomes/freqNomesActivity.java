@@ -1,5 +1,6 @@
 package com.github.frequencianomes;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.widget.Spinner;
 
 import org.json.JSONArray;
 
+import java.io.Serializable;
 import java.util.concurrent.ExecutionException;
 
 import models.rankingNomes;
@@ -32,8 +34,9 @@ public class freqNomesActivity extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     JSONArray retorno = new ibge_service(spn_generos.getSelectedItem().toString()).execute().get();
-
-
+                    Intent intent = new Intent(freqNomesActivity.this, ResultadosActivity.class);
+                    intent.putExtra("dadosAPI", retorno.toString());
+                    startActivity(intent);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (ExecutionException e) {
