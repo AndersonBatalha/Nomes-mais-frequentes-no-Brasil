@@ -7,13 +7,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-import org.json.JSONArray;
-
-import java.io.Serializable;
 import java.util.concurrent.ExecutionException;
 
-import models.rankingNomes;
+import models.nomesFrequentes;
 import service.ibge_service;
 
 public class freqNomesActivity extends AppCompatActivity {
@@ -28,21 +26,20 @@ public class freqNomesActivity extends AppCompatActivity {
 
         spn_generos = findViewById(R.id.spn_generos);
         btn_buscar_nomes = findViewById(R.id.btn_buscar_nomes);
+    }
 
-        btn_buscar_nomes.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    JSONArray retorno = new ibge_service(spn_generos.getSelectedItem().toString()).execute().get();
-                    Intent intent = new Intent(freqNomesActivity.this, ResultadosActivity.class);
-                    intent.putExtra("dadosAPI", retorno.toString());
-                    startActivity(intent);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+    public void buscar(View view) {
+        try {
+            nomesFrequentes retorno = new ibge_service(spn_generos.getSelectedItem().toString()).execute().get();
+            Intent intent = new Intent(freqNomesActivity.this, ResultadosActivity.class);
+            intent.putExtra("dadosAPI", retorno);
+            startActivity(intent);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

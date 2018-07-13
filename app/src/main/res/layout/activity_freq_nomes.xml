@@ -30,6 +30,7 @@
         android:layout_marginRight="10pt"
         android:layout_marginLeft="10pt"
         android:id="@+id/btn_buscar_nomes"
+        android:onClick="buscar"
         />
 
 </LinearLayout>

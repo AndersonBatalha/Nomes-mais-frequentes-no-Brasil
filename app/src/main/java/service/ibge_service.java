@@ -15,21 +15,22 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Scanner;
 
-public class ibge_service extends AsyncTask<Void, Void, JSONArray> {
+import models.nomesFrequentes;
+
+public class ibge_service extends AsyncTask<Void, Void, nomesFrequentes> {
 
     private final String genero;
     private String urlString = "https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking";
-    private StringBuilder str = new StringBuilder();
-    private JSONArray arrayDados;
-    private JSONObject dados;
-    private JSONArray arrayRankingNomes;
+    private JSONObject dados_json;
 
     public ibge_service(String genero) {
         this.genero = genero;
     }
 
     @Override
-    protected JSONArray doInBackground(Void... voids) {
+    protected nomesFrequentes doInBackground(Void... voids) {
+        StringBuilder str = new StringBuilder();
+
         try {
             if (this.genero.equals("Masculino")) {
                 urlString = "https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking?sexo=M";
@@ -51,18 +52,11 @@ public class ibge_service extends AsyncTask<Void, Void, JSONArray> {
                 str.append(scanner.next());
             }
 
-            // como os dados estão em um array, é necessário criar um objeto do tipo JSONArray, e pegar a primeira posição da lista, onde estão as informações. Em seguida, acessar outro array, contendo o ranking com os nomes.
+            // como os dados estão em um array, é necessário criar um objeto do tipo JSONArray, e pegar a primeira posição da lista, onde estão as informações.
 
             try {
-                arrayDados = new JSONArray(str.toString());
-                dados = new JSONObject(String.valueOf(arrayDados.get(0)));
-                arrayRankingNomes = new JSONArray(String.valueOf(dados.get("res")));
-
-                //Log.i("DADOS", String.valueOf(arrayRankingNomes));
-
-                //for (int i = 0; i < arrayRankingNomes.length(); i++) {
-                //    Log.i("DADOS", String.valueOf(arrayRankingNomes.get(i)));
-                //}
+                JSONArray arrayDados = new JSONArray(str.toString());
+                dados_json = new JSONObject(String.valueOf(arrayDados.get(0)));
 
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -73,7 +67,6 @@ public class ibge_service extends AsyncTask<Void, Void, JSONArray> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        return arrayRankingNomes;
+        return new Gson().fromJson(dados_json.toString(), nomesFrequentes.class);
     }
 }
