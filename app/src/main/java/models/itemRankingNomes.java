@@ -1,7 +1,5 @@
 package models;
 
-import java.io.PrintStream;
-
 public class itemRankingNomes {
     private String nome;
     private int frequencia;
