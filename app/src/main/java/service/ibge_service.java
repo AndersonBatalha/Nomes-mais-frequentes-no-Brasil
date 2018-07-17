@@ -38,6 +38,7 @@ public class ibge_service extends AsyncTask<Void, Void, nomesFrequentes> {
             else if (this.genero.equals("Feminino")) {
                 urlString = "https://servicodados.ibge.gov.br/api/v2/censos/nomes/ranking?sexo=F";
             }
+
             URL url = new URL(urlString);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("GET");

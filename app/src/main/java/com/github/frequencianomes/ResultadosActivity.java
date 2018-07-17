@@ -51,10 +51,10 @@ public class ResultadosActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, dadosNomes);
-            lst_ranking.setAdapter(adapter);
-
         }
+
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, dadosNomes);
+        lst_ranking.setAdapter(adapter);
 
     }
 }

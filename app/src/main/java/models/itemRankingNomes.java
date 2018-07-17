@@ -1,5 +1,7 @@
 package models;
 
+import android.annotation.SuppressLint;
+
 public class itemRankingNomes {
     private String nome;
     private int frequencia;
@@ -29,8 +31,9 @@ public class itemRankingNomes {
         return ranking;
     }
 
+    @SuppressLint("DefaultLocale")
     public String toString() {
-        return String.format("%6d %25s %25d", getRanking(), getNome(), getFrequencia());
+        return String.format("\n%d - %s\nFrequência: %d\n", getRanking(), getNome(), getFrequencia());
     }
 
 }
